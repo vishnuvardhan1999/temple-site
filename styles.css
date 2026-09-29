@@ -13,7 +13,7 @@
   --sans: "Outfit", "Avenir Next", sans-serif;
 }
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: clip; max-width: 100%; }
 body {
   margin: 0;
   color: var(--ink);
@@ -21,10 +21,12 @@ body {
   font-family: var(--sans);
   font-size: 17px;
   line-height: 1.6;
+  overflow-x: clip;
+  max-width: 100%;
 }
 img { max-width: 100%; display: block; }
 a { color: inherit; }
-.wrap { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
+.wrap { width: min(1120px, 100%); margin: 0 auto; padding-inline: 22px; }
 .topbar {
   background: var(--deep);
   color: #f6ead4;
@@ -64,8 +66,9 @@ header.site {
   background: linear-gradient(90deg, #6e2030, #8d3142);
   color: #fff6ea;
   text-align: center;
-  padding: 10px 16px;
+  padding: 12px 22px;
   font-size: 14.5px;
+  overflow-wrap: anywhere;
 }
 .appeal a { color: #ffe7a8; }
 .hero {
@@ -78,10 +81,10 @@ header.site {
   content: ""; position: absolute; inset: 0;
   background: linear-gradient(180deg, rgba(28,10,8,0.15) 10%, rgba(28,10,8,0.72) 100%);
 }
-.hero .wrap { position: relative; z-index: 1; padding: 72px 0 56px; }
+.hero .wrap { position: relative; z-index: 1; padding: 72px 22px 56px; }
 .kicker { letter-spacing: 0.18em; text-transform: uppercase; font-size: 12px; color: var(--maroon); margin: 0 0 10px; }
 .hero h1 { font-family: var(--serif); font-weight: 520; font-size: clamp(42px, 6vw, 76px); line-height: 0.98; margin: 0 0 14px; max-width: 12ch; }
-.hero p.lead { max-width: 46ch; font-size: 18px; margin: 0 0 22px; color: #f3e6d4; }
+.hero p.lead { max-width: min(46ch, 100%); font-size: 18px; margin: 0 0 22px; color: #f3e6d4; overflow-wrap: break-word; }
 .row { display: flex; gap: 12px; flex-wrap: wrap; }
 .page-hero { padding: 54px 0 10px; }
 .page-hero h1 { font-family: var(--serif); font-weight: 520; font-size: clamp(36px, 5vw, 60px); line-height: 1; margin: 0 0 10px; }
@@ -193,17 +196,17 @@ footer a { color: var(--gold-soft); text-decoration: none; }
 header.site { position: sticky; }
 .nav { position: relative; }
 img, iframe, video { max-width: 100%; }
-body { overflow-x: hidden; }
+body { overflow-x: clip; }
 .menu a { padding: 6px 0; }
 @media (max-width: 1100px) {
   .services, .people, .stats, .steps, .socials { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 860px) {
-  .wrap { width: min(1120px, calc(100% - 28px)); }
+  .wrap { width: min(1120px, 100%); padding-inline: 18px; }
   .topbar { font-size: 12px; }
   .brand strong { font-size: 16px; }
   .hero { min-height: auto; align-items: end; }
-  .hero .wrap { padding: 88px 0 72px; }
+  .hero .wrap { padding: 88px 18px 72px; }
   .hero h1 { font-size: clamp(36px, 11vw, 56px); max-width: 14ch; }
   .stats { margin-top: 18px; }
   .frame { min-height: 240px; }
@@ -223,4 +226,74 @@ body { overflow-x: hidden; }
   .topbar .wrap { flex-direction: column; gap: 2px; }
   .appeal { font-size: 13.5px; padding: 10px 12px; }
   .row .btn { flex: 1 1 auto; }
+}
+
+/* Phone and narrow windows. These rules come last so they win over earlier breakpoints. */
+@media (max-width: 860px) {
+  .services, .people, .stats, .steps, .socials,
+  .grid-3, .grid-2, .split, .band, .foot, .map-grid, .quote {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .split > *, .grid-2 > *, .grid-3 > *, .band > *, .frame, .card, .person, .service, .step, .stat, .social {
+    min-width: 0;
+    max-width: 100%;
+  }
+  .frame img, .split img, .band img {
+    width: 100%;
+    height: auto;
+    max-height: 420px;
+    object-fit: cover;
+  }
+  .map-frame { display: block; max-width: 100%; }
+  fieldset { min-width: 0; max-width: 100%; }
+  input, textarea, select { font-size: 16px; width: 100%; }
+  h1, h2, h3, .person h3, .topbar span, .appeal { overflow-wrap: break-word; }
+  .brand { min-width: 0; flex: 1 1 auto; }
+  .brand div { min-width: 0; }
+  .menu-toggle {
+    flex: none;
+    min-height: 44px;
+    padding: 10px 16px;
+    background: #fff;
+    color: var(--deep);
+    font: inherit;
+    font-size: 15px;
+  }
+  .menu.open {
+    max-height: calc(100dvh - 72px);
+    overflow: auto;
+    box-shadow: var(--shadow);
+    gap: 0;
+  }
+  .menu a {
+    width: 100%;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--line);
+  }
+  .menu a:last-child { border-bottom: 0; }
+  .hero .wrap { padding: 56px 18px 40px; }
+  .hero h1 { font-size: clamp(34px, 10vw, 52px); }
+  .quote p { font-size: clamp(22px, 6vw, 32px); }
+  .band .goal { font-size: clamp(32px, 10vw, 42px); }
+  .card > .btn, .band .btn { width: 100%; }
+  .appeal { line-height: 1.45; padding: 12px 16px; }
+}
+@media (max-width: 640px) {
+  .row { flex-direction: column; align-items: stretch; }
+  .row .btn { width: 100%; }
+}
+@media (min-width: 700px) and (max-width: 1100px) {
+  .services, .people, .stats, .steps, .socials {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 400px) {
+  .brand img { width: 42px; height: 42px; }
+  .brand strong { font-size: 15px; }
+  .wrap { padding-inline: 16px; }
+  .topbar { font-size: 12px; }
+  .appeal { padding-inline: 16px; }
+  .hero p.lead { font-size: 16.5px; }
 }

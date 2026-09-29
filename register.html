@@ -16,7 +16,7 @@
     <div class="topbar"><div class="wrap"><span>Charity no. 1174203 · Watford Velmurugan Trust</span><span><a href="tel:01923229564">01923 229564</a> · <a href="mailto:temple@watfordvelmurugan.org">temple@watfordvelmurugan.org</a></span></div></div>
     <header class="site"><div class="wrap nav">
       <a class="brand" href="index.html"><img src="images/emblem.png" alt="Temple emblem, a golden spear and peacock feather"><div><strong>Watford Velmurugan</strong><span>Hindu Temple</span></div></a>
-      <button class="menu-toggle" type="button" aria-label="Open menu">Menu</button>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-label="Open menu">Menu</button>
       <nav class="menu">
         <a href="index.html">Home</a>
         <a href="about.html">Our story</a>
@@ -84,8 +84,21 @@
       <p class="fine">A design preview of watfordvelmurugan.org. Pictures on this preview are original illustrations, not photographs of the temple. Forms on this preview do not send anything to the temple.</p>
     </div></footer>
     <script>
-      document.querySelector(".menu-toggle")?.addEventListener("click", () => {
-        document.querySelector(".menu").classList.toggle("open");
+      const menuToggle = document.querySelector(".menu-toggle");
+      const menu = document.querySelector(".menu");
+      menuToggle?.addEventListener("click", () => {
+        const open = menu.classList.toggle("open");
+        menuToggle.setAttribute("aria-expanded", open ? "true" : "false");
+        menuToggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+        menuToggle.textContent = open ? "Close" : "Menu";
+      });
+      menu?.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          menu.classList.remove("open");
+          menuToggle?.setAttribute("aria-expanded", "false");
+          menuToggle?.setAttribute("aria-label", "Open menu");
+          if (menuToggle) menuToggle.textContent = "Menu";
+        });
       });
       document.querySelectorAll("form[data-preview]").forEach(form => {
         form.addEventListener("submit", (e) => {
