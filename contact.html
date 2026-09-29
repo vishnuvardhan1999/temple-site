@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact · Watford Velmurugan Hindu Temple</title>
+  <meta name="description" content="Watford Velmurugan Hindu Temple, the first temple consecrated in Watford.">
+  <link rel="icon" href="images/emblem.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,460;9..144,560&family=Outfit:wght@380;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="topbar"><div class="wrap"><span>Charity no. 1174203 · Watford Velmurugan Trust</span><span><a href="tel:01923229564">01923 229564</a> · <a href="mailto:temple@watfordvelmurugan.org">temple@watfordvelmurugan.org</a></span></div></div>
+    <header class="site"><div class="wrap nav">
+      <a class="brand" href="index.html"><img src="images/emblem.png" alt="Temple emblem, a golden spear and peacock feather"><div><strong>Watford Velmurugan</strong><span>Hindu Temple</span></div></a>
+      <button class="menu-toggle" type="button" aria-label="Open menu">Menu</button>
+      <nav class="menu">
+        <a href="index.html">Home</a>
+        <a href="about.html">Our story</a>
+        <a href="committee.html">Committee</a>
+        <a href="visit.html" class="active">Visit</a>
+        <a href="register.html">Register</a>
+        <a href="donate.html">Donate</a>
+      </nav>
+    </div></header>
+    <div class="appeal">Help secure a permanent home. Fundraising goal over £1.8 million, until 15 October. <a href="donate.html">Donate</a></div>
+    
+
+<main>
+  <div class="wrap page-hero">
+    <p class="kicker">Contact</p>
+    <h1>Write to the temple.</h1>
+    <p>Phone 01923 229564, mobile +44 7590 908756, or email temple@watfordvelmurugan.org.</p>
+  </div>
+  <section>
+    <div class="wrap" style="max-width:720px">
+      <p class="note">This is a design preview. This form does not send your message. Use the email or phone above to reach the real temple.</p>
+      <form data-preview>
+        <div class="grid-2">
+          <label>First name<input required name="first"></label>
+          <label>Last name<input required name="last"></label>
+        </div>
+        <label>Email<input required type="email" name="email"></label>
+        <label>Subject<input name="subject"></label>
+        <label>Message<textarea required name="message"></textarea></label>
+        <button class="btn" type="submit">Send message</button>
+      </form>
+      <div id="thanks" hidden class="card"><h2>Thanks.</h2><p>On the real site this would go to the temple. Here it stays on this page.</p></div>
+    </div>
+  </section>
+</main>
+
+
+    <footer><div class="wrap">
+      <div class="foot">
+        <div>
+          <strong>Watford Velmurugan Hindu Temple</strong>
+          <p>453 St Albans Road, Watford, WD24 7RZ<br>Former Beechwood Family Centre</p>
+          <p><a href="tel:01923229564">01923 229564</a><br><a href="tel:+447590908756">+44 7590 908756</a><br><a href="mailto:temple@watfordvelmurugan.org">temple@watfordvelmurugan.org</a></p>
+        </div>
+        <div>
+          <strong>Visit</strong>
+          <p>Open daily<br>Morning 10am to 2pm<br>Evening 5pm to 9pm<br>Closed between 2pm and 5pm</p>
+        </div>
+        <div>
+          <strong>Follow</strong>
+          <p><a href="https://facebook.com/watfordvelmurugan">Facebook</a><br>
+          <a href="https://instagram.com/watford_velmurugan_temple">Instagram</a><br>
+          <a href="https://www.youtube.com/channel/UCru1bKwe3nXbz-lE2-POTbg">YouTube</a></p>
+        </div>
+      </div>
+      <p class="fine">A design preview of watfordvelmurugan.org. Pictures on this preview are original illustrations, not photographs of the temple. Forms on this preview do not send anything to the temple.</p>
+    </div></footer>
+    <script>
+      document.querySelector(".menu-toggle")?.addEventListener("click", () => {
+        document.querySelector(".menu").classList.toggle("open");
+      });
+      document.querySelectorAll("form[data-preview]").forEach(form => {
+        form.addEventListener("submit", (e) => {
+          e.preventDefault();
+          form.hidden = true;
+          document.querySelector("#thanks").hidden = false;
+        });
+      });
+    </script>
+    
+</body>
+</html>
