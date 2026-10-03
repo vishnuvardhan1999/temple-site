@@ -13,7 +13,7 @@
   --sans: "Outfit", "Avenir Next", sans-serif;
 }
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; overflow-x: clip; max-width: 100%; }
+html { scroll-behavior: smooth; }
 body {
   margin: 0;
   color: var(--ink);
@@ -21,12 +21,10 @@ body {
   font-family: var(--sans);
   font-size: 17px;
   line-height: 1.6;
-  overflow-x: clip;
-  max-width: 100%;
 }
 img { max-width: 100%; display: block; }
 a { color: inherit; }
-.wrap { width: min(1120px, 100%); margin: 0 auto; padding-inline: 22px; }
+.wrap { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
 .topbar {
   background: var(--deep);
   color: #f6ead4;
@@ -46,7 +44,7 @@ header.site {
   padding: 12px 0; gap: 20px;
 }
 .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-.brand img { width: 52px; height: 52px; border-radius: 50%; object-fit: cover; background: #fff; }
+.brand img { height: 64px; width: auto; max-width: 220px; object-fit: contain; background: transparent; border-radius: 8px; }
 .brand strong { display: block; font-family: var(--serif); font-weight: 560; font-size: 18px; line-height: 1.15; }
 .brand span { display: block; color: var(--muted); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; }
 .menu { display: flex; align-items: center; gap: 22px; }
@@ -66,9 +64,8 @@ header.site {
   background: linear-gradient(90deg, #6e2030, #8d3142);
   color: #fff6ea;
   text-align: center;
-  padding: 12px 22px;
+  padding: 10px 16px;
   font-size: 14.5px;
-  overflow-wrap: anywhere;
 }
 .appeal a { color: #ffe7a8; }
 .hero {
@@ -81,10 +78,10 @@ header.site {
   content: ""; position: absolute; inset: 0;
   background: linear-gradient(180deg, rgba(28,10,8,0.15) 10%, rgba(28,10,8,0.72) 100%);
 }
-.hero .wrap { position: relative; z-index: 1; padding: 72px 22px 56px; }
+.hero .wrap { position: relative; z-index: 1; padding: 72px 0 56px; }
 .kicker { letter-spacing: 0.18em; text-transform: uppercase; font-size: 12px; color: var(--maroon); margin: 0 0 10px; }
 .hero h1 { font-family: var(--serif); font-weight: 520; font-size: clamp(42px, 6vw, 76px); line-height: 0.98; margin: 0 0 14px; max-width: 12ch; }
-.hero p.lead { max-width: min(46ch, 100%); font-size: 18px; margin: 0 0 22px; color: #f3e6d4; overflow-wrap: break-word; }
+.hero p.lead { max-width: 46ch; font-size: 18px; margin: 0 0 22px; color: #f3e6d4; }
 .row { display: flex; gap: 12px; flex-wrap: wrap; }
 .page-hero { padding: 54px 0 10px; }
 .page-hero h1 { font-family: var(--serif); font-weight: 520; font-size: clamp(36px, 5vw, 60px); line-height: 1; margin: 0 0 10px; }
@@ -196,17 +193,17 @@ footer a { color: var(--gold-soft); text-decoration: none; }
 header.site { position: sticky; }
 .nav { position: relative; }
 img, iframe, video { max-width: 100%; }
-body { overflow-x: clip; }
+body { overflow-x: hidden; }
 .menu a { padding: 6px 0; }
 @media (max-width: 1100px) {
   .services, .people, .stats, .steps, .socials { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 860px) {
-  .wrap { width: min(1120px, 100%); padding-inline: 18px; }
+  .wrap { width: min(1120px, calc(100% - 28px)); }
   .topbar { font-size: 12px; }
   .brand strong { font-size: 16px; }
   .hero { min-height: auto; align-items: end; }
-  .hero .wrap { padding: 88px 18px 72px; }
+  .hero .wrap { padding: 88px 0 72px; }
   .hero h1 { font-size: clamp(36px, 11vw, 56px); max-width: 14ch; }
   .stats { margin-top: 18px; }
   .frame { min-height: 240px; }
@@ -228,72 +225,21 @@ body { overflow-x: clip; }
   .row .btn { flex: 1 1 auto; }
 }
 
-/* Phone and narrow windows. These rules come last so they win over earlier breakpoints. */
-@media (max-width: 860px) {
-  .services, .people, .stats, .steps, .socials,
-  .grid-3, .grid-2, .split, .band, .foot, .map-grid, .quote {
-    grid-template-columns: minmax(0, 1fr);
-  }
-  .split > *, .grid-2 > *, .grid-3 > *, .band > *, .frame, .card, .person, .service, .step, .stat, .social {
-    min-width: 0;
-    max-width: 100%;
-  }
-  .frame img, .split img, .band img {
-    width: 100%;
-    height: auto;
-    max-height: 420px;
-    object-fit: cover;
-  }
-  .map-frame { display: block; max-width: 100%; }
-  fieldset { min-width: 0; max-width: 100%; }
-  input, textarea, select { font-size: 16px; width: 100%; }
-  h1, h2, h3, .person h3, .topbar span, .appeal { overflow-wrap: break-word; }
-  .brand { min-width: 0; flex: 1 1 auto; }
-  .brand div { min-width: 0; }
-  .menu-toggle {
-    flex: none;
-    min-height: 44px;
-    padding: 10px 16px;
-    background: #fff;
-    color: var(--deep);
-    font: inherit;
-    font-size: 15px;
-  }
-  .menu.open {
-    max-height: calc(100dvh - 72px);
-    overflow: auto;
-    box-shadow: var(--shadow);
-    gap: 0;
-  }
-  .menu a {
-    width: 100%;
-    min-height: 48px;
-    display: flex;
-    align-items: center;
-    border-bottom: 1px solid var(--line);
-  }
-  .menu a:last-child { border-bottom: 0; }
-  .hero .wrap { padding: 56px 18px 40px; }
-  .hero h1 { font-size: clamp(34px, 10vw, 52px); }
-  .quote p { font-size: clamp(22px, 6vw, 32px); }
-  .band .goal { font-size: clamp(32px, 10vw, 42px); }
-  .card > .btn, .band .btn { width: 100%; }
-  .appeal { line-height: 1.45; padding: 12px 16px; }
-}
-@media (max-width: 640px) {
-  .row { flex-direction: column; align-items: stretch; }
-  .row .btn { width: 100%; }
-}
-@media (min-width: 700px) and (max-width: 1100px) {
-  .services, .people, .stats, .steps, .socials {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-@media (max-width: 400px) {
-  .brand img { width: 42px; height: 42px; }
-  .brand strong { font-size: 15px; }
-  .wrap { padding-inline: 16px; }
-  .topbar { font-size: 12px; }
-  .appeal { padding-inline: 16px; }
-  .hero p.lead { font-size: 16.5px; }
-}
+.live-fund { display:grid; grid-template-columns: 1.15fr .85fr; gap: 22px; align-items: center; background: linear-gradient(120deg,#5c1824,#8a3140); color:#fff8ee; border-radius: 28px; padding: 36px; }
+.live-fund h2 { color:#fff; }
+.pill { display:inline-block; background:#e2b15a; color:#3c1219; border-radius:999px; padding:4px 10px; font-size:12px; letter-spacing:.12em; text-transform:uppercase; font-weight:600; }
+.fund-card { background:#fffaf3; color:#24160f; border-radius:22px; padding:22px; }
+.fund-card .eyebrow { letter-spacing:.14em; text-transform:uppercase; font-size:12px; color:#7a2433; margin:0; }
+.fund-card .goal { font-family:var(--serif); font-size:42px; margin:6px 0; }
+.bar { height:10px; background:#eadfce; border-radius:999px; overflow:hidden; margin:12px 0; }
+.bar span { display:block; height:100%; width:1.5%; background:#7a2433; border-radius:999px; }
+.fund-meta { display:flex; justify-content:space-between; gap:12px; font-size:14px; }
+.fund-card .btn { width:100%; margin-top:16px; background:#e2b15a; color:#3c1219; }
+@media (max-width:860px){ .live-fund { grid-template-columns:1fr; padding:22px; } }
+
+.float-call{position:fixed;right:18px;bottom:18px;z-index:40}
+.float-call summary{list-style:none;cursor:pointer;background:#7a2433;color:#fff8ee;border-radius:999px;padding:14px 18px;box-shadow:0 12px 30px rgba(60,18,25,.28);font-weight:600}
+.float-call summary::-webkit-details-marker{display:none}
+.float-call div{margin-top:8px;background:#fffaf3;border:1px solid rgba(60,18,25,.12);border-radius:16px;padding:10px;display:grid;gap:6px;box-shadow:0 12px 30px rgba(60,18,25,.16)}
+.float-call a{text-decoration:none;padding:8px 10px;border-radius:10px}
+.float-call a:hover{background:#f3e6d4}
