@@ -1,0 +1,67 @@
+:root {
+  color-scheme: light;
+  --ink: #2c1814;
+  --ink-soft: #5c463e;
+  --maroon: #6e1c24;
+  --maroon-deep: #3c1016;
+  --gold: #a67c2d;
+  --gold-bright: #e0c27a;
+  --cream: #f6efe4;
+  --cream-deep: #efe2d0;
+  --paper: #fbf7f1;
+  --line: rgba(166, 124, 45, 0.38);
+  --serif: "Fraunces", "Iowan Old Style", Palatino, Georgia, serif;
+  --sans: "Outfit", "Segoe UI", sans-serif;
+  font: 16px/1.5 var(--sans);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: var(--sans);
+}
+
+body.nav-lock {
+  overflow: hidden;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--serif);
+  font-weight: 560;
+  letter-spacing: -0.02em;
+}
+
+a {
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+}
+
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+#app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+::selection {
+  background: #e7d3a4;
+  color: var(--maroon-deep);
+}
